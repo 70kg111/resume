@@ -86,13 +86,20 @@ h1,h2,h3,h4,h5,h6{
 .topNavBar .logo .card{
     color: gray;
 }
-
 .topNavBar{
     padding: 20px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    transition: all 0.7s;
+    color: #b7b7b7;
+}
+.topNavBar.sticky{
+    background: white;
+    z-index: 1;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    color: black;
 }
 .topNavBar-inner{
     padding:0 16px;
@@ -105,10 +112,11 @@ h1,h2,h3,h4,h5,h6{
 }
 .topNavBar nav > ul > li{
     float: left;
+    position: relative;
 }
 .topNavBar nav > ul > li > a{
     font-size: 12px;
-    color: #b7b7b7;
+    color: inherit;
     text-decoration: none;
     padding: 0 17px 0 17px;
     font-weight: bold;
@@ -117,10 +125,49 @@ h1,h2,h3,h4,h5,h6{
     padding-bottom: 5px; 
     display: block;
 }
-.topNavBar nav > ul > li > a:hover{
-    border-bottom: 3px solid #e06567;
+.topNavBar nav > ul > li.active > a::after{
+    background:  #e06567;
+    content: '';
+    display: block;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    animation: menuSlide 0.5s;
 }
-
+@keyframes menuSlide{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+.topNavBar .subMenu{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.topNavBar .subMenu > li{
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+.topNavBar li.active > .subMenu{
+    display: block;
+    animation: subMenuSlide 0.5s;
+}
+@keyframes subMenuSlide{
+    0%{
+        margin-right: 70%
+    }
+    100%{
+        margin-right: 0;
+    }
+}
 
 .banner{
     height: 515px;
