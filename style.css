@@ -1,3 +1,46 @@
+/*loading动画*/
+.loading{
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.loading::before,.loading::after{
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    background: black;
+    border-radius: 50%;
+    top:0;      
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;   /*上下左右都为0，再加上margin:auto; 就是自动居中*/
+    animation: s 1.5s linear infinite;  /*加上s状态，状态开始到结束为1.5s*/
+}
+
+.loading::after{
+    animation-delay: 0.75s;     /*第二个圆出现的时间*/
+}
+
+@keyframes s{
+    0%{             /*初始状态*/
+        width: 0px;
+        height: 0px;
+        opacity: 1; /*透明度*/
+    }
+    100%{           /*结束状态*/
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+
+
+
+
+/*页面CSS效果*/
 body{
     background-color: #efefef;
     margin: 0%;
