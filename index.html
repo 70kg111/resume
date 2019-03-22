@@ -24,6 +24,7 @@
 			width: 100%;
 			height: 100%;
 			background: white;
+			z-index: 1;
 			align-items: center;
 			justify-content: center;
 		}
@@ -196,7 +197,10 @@
 
 	</section>
 	<script>
-		siteWelcome.classList.remove('active');		//网页加载完成后将active属性在id为siteWelcome中的div中移除，就不会显示加载动画了
+		setTimeout(function(){
+			siteWelcome.classList.remove('active');		//网页加载完成后将active属性在id为siteWelcome中的div中移除，就不会显示加载动画了
+		},3000)
+		
 	</script>
 </body>
 
