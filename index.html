@@ -5,9 +5,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>李卫宁的个人简历</title>
+	<title>Living resume</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="//at.alicdn.com/t/font_862232_wn3aty7zrd8.js"></script>
+
 	<style type="text/css">
 		.icon {
 			width: 1em;
@@ -201,8 +202,7 @@
 				<div class="bar-inner"></div>
 			</div>
 		</nav>
-		<script src="./main.js">
-		</script>
+
 
 		<div id="siteWorks" class="works" style="height: 597px ">
 			<div class="big" style="top: 0; left: 0;">
@@ -256,6 +256,15 @@
 
 		//点击导航栏跳转到对应的内容页
 		let aTags = document.querySelectorAll('nav.menu > ul > li > a');
+
+		//引入tween.js代码
+		function animate(time) {
+			requestAnimationFrame(animate);
+			TWEEN.update(time);
+		}
+		requestAnimationFrame(animate);
+
+
 		for (let i = 0; i < aTags.length; i++) {
 			aTags[i].onclick = function (x) {
 				x.preventDefault();
@@ -263,11 +272,37 @@
 				let href = a.getAttribute('href');	//'#siteAbout'
 				let element = document.querySelector(href);
 				let top = element.offsetTop;
-				window.scrollTo(0, top - 100);
+
+				//点击导航栏跳转到对应内容页，滑动跳转
+				// let n = 25;		//一共动多少次
+				// let t = 250 / n;		//多长时间移动一次
+				let currentTop = window.scrollY;		//要从当前的高度，跳转到要去的高度
+				let targetTop = top - 100;			//定义要去的高度
+				// let distance = (targetTop - currentTop) / n;	//每次需要移动的高度
+				// let i = 0;
+				// let id = setInterval(() => {		//控制下滑，多少秒到哪里
+				// 	if (i === n) {
+				// 		window.clearInterval(id);
+				// 		return;
+				// 	}
+				// 	i = i + 1;
+				// 	window.scrollTo(0, currentTop + distance * i);
+				// }, t)
+				var coords = { y: currentTop };
+				var tween = new TWEEN.Tween(coords)
+					.to({ y: targetTop }, 600)
+					.easing(TWEEN.Easing.Quadratic.InOut)
+					.onUpdate(function () {
+						window.scrollTo(0,coords.y);
+					})
+					.start();
 			}
 		}
 
 	</script>
+	<script src="./main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
+	<!--引入tween.js，使滑动更自然，看的更舒服-->
 </body>
 
 </html>
