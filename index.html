@@ -86,7 +86,7 @@
 	</div>
 
 	<main style="margin-top: -200px;">
-		<div id="siteAbout" class="userCard">
+		<div data-x id="siteAbout" class="userCard">
 			<div class="pictureAndText clearfix">
 				<div class="picture">
 					<img src="./img/mine.jpg" style="weight: 299px; height: 347px;" alt="头像">
@@ -149,7 +149,7 @@
 			吾虽浪迹天涯，亦未迷失本心。
 		</p>
 	</main>
-	<section id="siteSkills" class="skills">
+	<section data-x id="siteSkills" class="skills">
 		<h2>技能</h2>
 		<ol class="clearfix">
 			<li>
@@ -190,7 +190,7 @@
 			</li>
 		</ol>
 	</section>
-	<section class="portfolio">
+	<section data-x id="siteWorks" class="portfolio" >
 		<h2>作品</h2>
 		<nav>
 			<ol class="clearfix">
@@ -204,7 +204,7 @@
 		</nav>
 
 
-		<div id="siteWorks" class="works" style="height: 597px ">
+		<div class="works" style="height: 597px ">
 			<div class="big" style="top: 0; left: 0;">
 				<img src="./img/1.jpg" alt="jobs1">
 			</div>
@@ -217,18 +217,38 @@
 		</div>
 
 	</section>
+
+
 	<script>
 		setTimeout(function () {
 			siteWelcome.classList.remove('active');		//网页加载完成后将active属性在id为siteWelcome中的div中移除，就不会显示加载动画了
 		}, 1500)
 
 		//实现导航栏一直在顶部
-		window.onscroll = function () {
+		window.onscroll = function (x) {
 			if (window.scrollY > 0) {				//可以通过scrollY的值来判断当前页面是否滑动，如果滑动就大于0，就加一个sticky属性
 				topNavBar.classList.add('sticky');
 			} else {
 				topNavBar.classList.remove('sticky');
 			}
+
+			//滚动到特定页面导航栏下标高亮
+			let specialTags = document.querySelectorAll('[data-x]');
+			let minIndex = 0;	//窗口顶部最近的元素
+			for (let i = 1; i < specialTags.length; i++) {
+				if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.screenY)) {
+					minIndex = i;
+				}
+			}
+
+			let id = specialTags[minIndex].id;
+			let a = document.querySelector('a[href="#' + id + '"]');
+			let li = a.parentNode;
+			let broAndMe = li.parentNode.children;
+			for (let i = 0; i < broAndMe.length; i++) {
+				broAndMe[i].classList.remove('highLight');
+			}
+			li.classList.add('highLight');
 		}
 
 		//实现二级菜单
@@ -254,7 +274,7 @@
 			}
 		}
 
-		//点击导航栏跳转到对应的内容页
+		//点击导航栏跳转到对应的内容页，实现缓动
 		let aTags = document.querySelectorAll('nav.menu > ul > li > a');
 
 		//引入tween.js代码
@@ -277,7 +297,7 @@
 				// let n = 25;		//一共动多少次
 				// let t = 250 / n;		//多长时间移动一次
 				let currentTop = window.scrollY;		//要从当前的高度，跳转到要去的高度
-				let targetTop = top - 100;			//定义要去的高度
+				let targetTop = Math.abs(top - 100);			//定义要去的高度
 				// let distance = (targetTop - currentTop) / n;	//每次需要移动的高度
 				// let i = 0;
 				// let id = setInterval(() => {		//控制下滑，多少秒到哪里
@@ -293,7 +313,7 @@
 					.to({ y: targetTop }, 600)
 					.easing(TWEEN.Easing.Quadratic.InOut)
 					.onUpdate(function () {
-						window.scrollTo(0,coords.y);
+						window.scrollTo(0, coords.y);
 					})
 					.start();
 			}
@@ -301,7 +321,7 @@
 
 	</script>
 	<script src="./main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 	<!--引入tween.js，使滑动更自然，看的更舒服-->
 </body>
 

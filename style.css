@@ -73,7 +73,14 @@ h1,h2,h3,h4,h5,h6{
     clear: both;
 }
 
-
+@keyframes slideUp{
+    0%{
+        transform: translateY(-30px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
 .topNavBar .logo{
     font-size: 24px;
     color: #e06567;
@@ -125,7 +132,8 @@ h1,h2,h3,h4,h5,h6{
     padding-bottom: 5px; 
     display: block;
 }
-.topNavBar nav > ul > li.active > a::after{
+.topNavBar nav > ul > li.active > a::after,
+.topNavBar nav > ul > li.highLight > a::after{
     background:  #e06567;
     content: '';
     display: block;
@@ -135,6 +143,7 @@ h1,h2,h3,h4,h5,h6{
     height: 3px;
     animation: menuSlide 0.5s;
 }
+
 @keyframes menuSlide{
     0%{
         width: 0;
