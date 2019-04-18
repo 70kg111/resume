@@ -72,15 +72,6 @@ h1,h2,h3,h4,h5,h6{
     display: block;
     clear: both;
 }
-
-@keyframes slideUp{
-    0%{
-        transform: translateY(-30px);
-    }
-    100%{
-        transform:translateY(0);
-    }
-}
 .topNavBar .logo{
     font-size: 24px;
     color: #e06567;
@@ -410,12 +401,11 @@ section.portfolio > nav .bar.state-2 .bar-inner{
 section.portfolio > nav .bar.state-3 .bar-inner{
     margin-left: 140px;
     width: 96px;
-}   
-section.portfolio .works{
-    position: relative;
-    margin-bottom: 100px;
 }
-section.portfolio .works .big,
-section.portfolio .works .small{
-    position: absolute;
+section.portfolio .swiper-container {
+    width: 800px;
+    height: 600px;
+}
+section.portfolio .swiper-button-prev{
+    
 }
