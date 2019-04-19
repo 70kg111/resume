@@ -55,8 +55,8 @@
         },
         bindEvents: function () {
             //监听form中的submit时间就可以知道用户点击了提交按钮
-            this.form.addEventListener('submit',  (e) => {
-                e.preventDefault(); //阻止默认事件，否则会自动刷新页面
+            this.form.addEventListener('submit',  (e) => { // 箭头函数不会犯贱改你的this
+                e.preventDefault()  //阻止默认事件，否则会自动刷新页面
                 this.saveMessage()
             })
         },
