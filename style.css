@@ -304,7 +304,7 @@ section.portfolio{
     margin-left: auto;
     margin-right: auto;
 }
-section.skills > h2{
+section > h2{
     color: #3d4451;
     font-size: 34px;
     line-height: 1.2;
@@ -342,6 +342,16 @@ section.skills >ol >li >h3{
     font-size: 14px;
     line-height: 1.1;
     padding-right: 40px;
+}
+section.message >ol{
+    max-width: 800px;
+    margin: 0 auto;
+    border-top: 2px solid black;
+    background-color: #f4f4f4;
+}
+section.message >ol >li{
+    padding: 20px 0;
+    border-bottom: 2px solid black;
 }
 
 
